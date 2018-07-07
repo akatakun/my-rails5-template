@@ -1,1 +1,14 @@
 @import '~bootstrap/dist/css/bootstrap';
+
+// Web fonts
+@font-face {
+  font-family: 'Noto Sans Mono CJK jp';
+  src: local('Noto Sans Mono CJK JP'),
+    url('../fonts/NotoSansCJKjp-hinted/NotoSansMonoCJKjp-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Noto Sans Mono CJK jp';
+}
