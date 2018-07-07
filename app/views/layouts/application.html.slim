@@ -5,7 +5,10 @@ html
       | Rails5Template
     = csrf_meta_tags
     = csp_meta_tag
+    // For Sprockets
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    // For Webpacker
+    = javascript_pack_tag    'application', 'data-turbolinks-track': 'reload'
   body
     = yield
