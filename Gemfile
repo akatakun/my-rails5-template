@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# https://github.com/bkeepers/dotenv/issues/324
+gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'slim-rails'
 gem 'foreman'
 gem 'webpacker'
