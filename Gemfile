@@ -40,6 +40,8 @@ gem 'slim-rails'
 gem 'foreman'
 gem 'webpacker'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-steam'
 gem 'cancancan'
 gem 'rolify'
 
