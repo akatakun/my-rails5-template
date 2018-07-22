@@ -1,9 +1,18 @@
 class OmniauthSessionsController < ApplicationController
-  # 外部からのコールバックに対してはSCRF対策をしない
-  skip_before_action :verify_authenticity_token, only: [:create]
+  # OmniAuth Steam GemがSCRF対策の回避をできていない
+  skip_before_action :verify_authenticity_token, only: [:steam]
 
-  def create
-    omniauth = request.env['omniauth.auth']
+  def twitter
+    callback(request.env['omniauth.auth'])
+  end
+
+  def steam
+    callback(request.env['omniauth.auth'])
+  end
+
+  private
+
+  def callback(omniauth)
     @user = User.from_omniauth(omniauth)
     if @user.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: omniauth.provider.capitalize) if is_navigational_format?
