@@ -1,8 +1,16 @@
 doctype html
-html
+html lang="ja"
   head
+    meta charset="utf-8"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
     title
       | Rails5Template
+    // meta name="description" content="オプティマイズ効果はないが検索結果に表示される。しかしテキトーに書くなら書かないほうがマシです"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+
+    = favicon_link_tag 'apple-touch-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png'
+    = favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/png'
+
     = csrf_meta_tags
     = csp_meta_tag
     // For Sprockets
