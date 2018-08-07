@@ -19,6 +19,8 @@ html lang="ja"
     // For Webpacker
     = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag    'application', 'data-turbolinks-track': 'reload'
+    // Autoloads
+    = javascript_pack_tag    autoload_javascript_path
   body
     .notice = notice
     .alert = alert
