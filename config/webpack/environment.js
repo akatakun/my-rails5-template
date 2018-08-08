@@ -1,3 +1,7 @@
 const { environment } = require('@rails/webpacker')
+const merge = require('webpack-merge');
 
-module.exports = environment
+var railsConfig = environment.toWebpackConfig();
+
+module.exports = merge(railsConfig, {
+});
