@@ -20,6 +20,7 @@ html lang="ja"
     = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag    'application', 'data-turbolinks-track': 'reload'
     // Autoloads
+    = stylesheet_pack_tag    autoload_stylesheet_path
     = javascript_pack_tag    autoload_javascript_path
   body
     .notice = notice
