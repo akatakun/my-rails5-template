@@ -57,3 +57,7 @@ yarn-debug.log*
 .yarn-integrity
 
 /docker/vol
+/shared
+
+# Ansible
+/etc/ansible/hosts
