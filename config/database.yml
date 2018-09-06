@@ -21,8 +21,8 @@ development:
   <<: *default
   database: my-rails5-template_development
   password: root
-  host: 127.0.0.1
-  port: 3307
+  host: mysql
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -31,8 +31,8 @@ test:
   <<: *default
   database: my-rails5-template_test
   password: root
-  host: 127.0.0.1
-  port: 3307
+  host: mysql
+  port: 3306
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

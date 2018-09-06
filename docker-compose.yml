@@ -1,13 +1,28 @@
 ---
 version: '3'
 services:
+  rails:
+    container_name: my-rails5-template-rails
+    build:
+      dockerfile: Dockerfile.rails
+      context: .
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - .:/usr/src/workspace
+    ports:
+      - 3010:3000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mysql
   mysql:
     container_name: my-rails5-template-mysql
     image: mysql:8.0.11
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./docker/etc/mysql/my.cnf:/etc/mysql/my.cnf
       - ./docker/vol/mysql:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
+      - 3316:3306
