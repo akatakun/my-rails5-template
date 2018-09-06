@@ -44,7 +44,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-steam'
+gem 'omniauth-steam', git: 'https://github.com/akatakun/omniauth-steam', ref: 'a828602'
 gem 'cancancan'
 gem 'rolify'
 
