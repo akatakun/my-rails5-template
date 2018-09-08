@@ -1,36 +1,14 @@
+FROM node:9.9.0 as node
 FROM ruby:2.5.1
 
-WORKDIR /usr/src/workspace
+WORKDIR /workspace
+
+COPY --from=node /usr/local/bin/node /usr/local/bin/
+# /usr/local/bin/yarn is wrapped by shell script
+COPY --from=node /opt/yarn* /opt/yarn
+RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg
+RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
 
 ENV LANG C.UTF-8
 
 EXPOSE 3000
-
-# Install Entrykit
-ARG ENTRYKIT_VERSION=0.4.0
-RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
-  tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
-  rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
-  mv entrykit /bin/entrykit && \
-  chmod +x /bin/entrykit && \
-  entrykit --symlink
-
-# For apt-get with https
-RUN apt-get update -qq && apt-get install -y --no-install-recommends \
-  apt-transport-https
-
-# For install yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update -qq && apt-get install -y --no-install-recommends \
-  nodejs \
-  yarn
-
-ENTRYPOINT [ \
-  "prehook", "make init_app", "--" \
-]
-
-CMD [ \
-  "make", "run" \
-]

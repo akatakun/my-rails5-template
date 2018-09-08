@@ -1,28 +1,51 @@
 ---
 version: '3'
 services:
-  rails:
+  mysql:
+    container_name: my-rails5-template-mysql
+    image: mysql:8.0.11
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker/etc/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./docker/vol/mysql:/var/lib/mysql
+    networks:
+      - internal_network
+    restart: always
+  rails: &base
     container_name: my-rails5-template-rails
     build:
       dockerfile: Dockerfile.rails
       context: .
     environment:
       RAILS_ENV: development
+    command: make run_rails
     volumes:
-      - .:/usr/src/workspace
+      - .:/workspace
+      - ./docker/vol/wpack:/workspace/node_modules
+      - ./docker/vol/rails:/workspace/vendor
+    networks:
+      - external_network
+      - internal_network
     ports:
-      - 3010:3000
+      - 3000:3000
     stdin_open: true
     tty: true
     depends_on:
       - mysql
-  mysql:
-    container_name: my-rails5-template-mysql
-    image: mysql:8.0.11
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - ./docker/etc/mysql/my.cnf:/etc/mysql/my.cnf
-      - ./docker/vol/mysql:/var/lib/mysql
+  wpack:
+    <<: *base
+    container_name: my-rails5-template-wpack
+    command: make run_wpack
     ports:
-      - 3316:3306
+      - 3035:3035
+    stdin_open: false
+    tty: false
+    restart: always
+    depends_on:
+      - rails
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
