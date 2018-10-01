@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./docker/etc/mysql/my.cnf:/etc/mysql/my.cnf
-      - ./docker/vol/mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
     networks:
       - internal_network
     restart: always
@@ -21,9 +21,9 @@ services:
       RAILS_ENV: development
     command: make run_rails
     volumes:
-      - .:/workspace
-      - ./docker/vol/wpack:/workspace/node_modules
-      - ./docker/vol/rails:/workspace/vendor
+      - workspace:/workspace
+      - wpack:/workspace/node_modules
+      - rails:/workspace/vendor
     networks:
       - external_network
       - internal_network
@@ -44,6 +44,28 @@ services:
     restart: always
     depends_on:
       - rails
+
+volumes:
+  mysql:
+    driver: local
+  workspace:
+    driver: local
+    driver_opts:
+      device: ":${PWD}"
+      type: nfs
+      o: addr=host.docker.internal,actimeo=1
+  wpack:
+    driver: local
+    driver_opts:
+      device: ":${PWD}/docker/vol/wpack"
+      type: nfs
+      o: addr=host.docker.internal,actimeo=1
+  rails:
+    driver: local
+    driver_opts:
+      device: ":${PWD}/docker/vol/rails"
+      type: nfs
+      o: addr=host.docker.internal,actimeo=1
 
 networks:
   external_network:
