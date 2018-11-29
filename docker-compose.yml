@@ -5,12 +5,15 @@ services:
     container_name: my-rails5-template-mysql
     image: mysql:8.0.11
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./docker/etc/mysql/my.cnf:/etc/mysql/my.cnf
       - mysql:/var/lib/mysql
     networks:
+      - external_network
       - internal_network
+    ports:
+      - 3307:3306
     restart: always
   rails: &base
     container_name: my-rails5-template-rails
