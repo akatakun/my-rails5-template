@@ -12,6 +12,7 @@ run_rails: init_wpack
 
 .PHONY: init_rails
 init_rails:
+	bundle config build.nokogiri --use-system-libraries
 	bundle install --path vendor/bundle
 
 .PHONY: run_wpack
