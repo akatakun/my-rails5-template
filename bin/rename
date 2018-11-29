@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+def rename(pre, new)
+  `git grep -l '#{pre}' | grep -v 'bin/rename' | xargs sed -i '' -e 's/#{pre}/#{new}/g'`
+end
+
+def camel(str)
+  str.split('-').map{|w| w[0] = w[0].upcase; w}.join
+end
+
+pre = 'my-rails5-template'
+new = ARGV[0].to_s
+
+rename pre, new
+
+pre = camel pre
+new = camel new
+puts pre
+puts new
+
+rename pre, new
