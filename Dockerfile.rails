@@ -8,6 +8,7 @@ COPY --from=node /usr/local/bin/node /usr/local/bin/
 COPY --from=node /opt/yarn* /opt/yarn
 RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg
 RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+RUN apt-get update && apt-get install -y vim
 
 ENV LANG C.UTF-8
 
