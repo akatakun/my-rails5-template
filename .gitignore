@@ -64,3 +64,4 @@ yarn-debug.log*
 
 # Cap
 config/deploy/*
+/etc/ssh/*
