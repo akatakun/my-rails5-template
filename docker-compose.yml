@@ -14,7 +14,6 @@ services:
       - internal_network
     ports:
       - 3307:3306
-    restart: always
   rails: &base
     container_name: my-rails5-template-rails
     build:
@@ -42,7 +41,6 @@ services:
       - 3035:3035
     stdin_open: false
     tty: false
-    restart: always
     depends_on:
       - rails
 
