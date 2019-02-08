@@ -46,8 +46,9 @@ gem 'cancancan'
 gem 'rolify'
 gem 'rails_admin', '~> 1.3'
 
-gem 'dalli'
 gem 'maxminddb'
+gem 'dalli'
+gem 'whenever'
 
 group :development, :test do
   gem 'capistrano-rails'

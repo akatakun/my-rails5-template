@@ -9,6 +9,7 @@ require "capistrano/rbenv"
 require "capistrano/bundler"
 require "capistrano/yarn"
 require "capistrano/puma"
+require "whenever/capistrano"
 
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Nginx
