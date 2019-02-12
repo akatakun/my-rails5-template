@@ -18,6 +18,8 @@ module MyRails5Template
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.paths.add 'lib', eager_load: true
+
     config.generators do |g|
       # Don't create assets and helper files, because turn off assets pipeline.
       g.assets false
