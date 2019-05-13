@@ -1,7 +1,3 @@
-.PHONY: init_server
-init_server:
-	ANSIBLE_CONFIG=etc/ansible/ansible.cfg ansible-playbook -i etc/ansible/hosts etc/ansible/bootstrap_server.yaml
-
 .PHONY: run
 run: init_wpack
 	bundle exec foreman start
